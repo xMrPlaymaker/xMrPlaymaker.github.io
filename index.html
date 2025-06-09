@@ -1,7 +1,49 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <meta charset="UTF-8">
+  <title>Landing Page with Login</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    #login-form, #content { max-width: 300px; margin: 100px auto; }
+    #content { display: none; }
+    .error { color: red; }
+  </style>
+</head>
 <body>
-<h1>Hello this is my website</h1>
-<p>I'm hosted with Gitfub Pages.</p>
+  <div id="login-form">
+    <h2>Login</h2>
+    <input id="username" placeholder="Username"><br><br>
+    <input id="password" type="password" placeholder="Password"><br><br>
+    <button onclick="login()">Login</button>
+    <div id="error" class="error"></div>
+  </div>
+  <div id="content">
+    <h2>Welcome!</h2>
+    <p>This is the protected info on your landing page.</p>
+    <button onclick="logout()">Logout</button>
+  </div>
+  <script>
+    const USER = 'admin';
+    const PASS = 'password';
+
+    function login() {
+      const u = document.getElementById('username').value;
+      const p = document.getElementById('password').value;
+      if (u === USER && p === PASS) {
+        document.getElementById('login-form').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+        document.getElementById('error').textContent = '';
+      } else {
+        document.getElementById('error').textContent = 'Invalid credentials';
+      }
+    }
+    function logout() {
+      document.getElementById('content').style.display = 'none';
+      document.getElementById('login-form').style.display = 'block';
+      document.getElementById('username').value = '';
+      document.getElementById('password').value = '';
+    }
+  </script>
 </body>
 </html>
